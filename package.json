@@ -1,5 +1,5 @@
 {
-  "name": "mf-webpack-vite-enhanced",
+  "name": "react-webpack-host-vite-remote",
   "private": true,
   "devDependencies": {
     "typescript": "^5.4.0"
