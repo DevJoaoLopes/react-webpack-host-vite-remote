@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+const { ModuleFederationPlugin } = require('@module-federation/enhanced');
 
 module.exports = {
   entry: './src/index.js',
@@ -14,6 +14,9 @@ module.exports = {
   plugins: [
     new ModuleFederationPlugin({
       name: 'host',
+      remotes: {
+        remote: 'remote@http://localhost:3001/mf-manifest.json'
+      },
       shared: {
         react: { singleton: true, requiredVersion: '^18.3.1' },
         'react-dom': { singleton: true, requiredVersion: '^18.3.1' }

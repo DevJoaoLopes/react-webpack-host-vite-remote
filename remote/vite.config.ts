@@ -8,6 +8,7 @@ export default defineConfig({
     federation({
       name: 'remote',
       filename: 'remoteEntry.js',
+      manifest: true,
       exposes: { './Button': './src/Button.tsx' },
       shared: {
         react: { singleton: true, requiredVersion: '^18.3.1' },
@@ -15,6 +16,5 @@ export default defineConfig({
       }
     })
   ],
-  server: { port: 3001, cors: true },
-  build: { target: 'esnext', minify: false, cssCodeSplit: false, lib: { entry: 'src/main.tsx', formats: ['es'] } }
+  build: { target: 'esnext', minify: false, cssCodeSplit: false }
 });
