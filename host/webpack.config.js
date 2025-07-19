@@ -15,11 +15,15 @@ module.exports = {
     new ModuleFederationPlugin({
       name: 'host',
       remotes: {
-        remote: 'remote@http://localhost:3001/mf-manifest.json'
+        'remotevite': `promise import('http://127.0.0.1:3001/remoteEntry.js')
+                         .then(module => ({
+                         get: request => module.get(request),
+                         init: arg => module.init(arg)
+                      }))`
       },
       shared: {
-        react: { singleton: true, requiredVersion: '^18.3.1' },
-        'react-dom': { singleton: true, requiredVersion: '^18.3.1' }
+        react: { singleton: true, requiredVersion: '18.3.1' },
+        "react-dom": { singleton: true, requiredVersion: '18.3.1' },
       }
     }),
     new HtmlWebpackPlugin({ template: './public/index.html' })
